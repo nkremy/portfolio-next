@@ -7,13 +7,14 @@ import { Menu, X, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FaGithub, FaLinkedin, FaFacebook } from "react-icons/fa";
 import NavLinks from "@/constants/NavLinks";
-import social from "@/constants/Social";
+import { useProfile } from "@/hooks/useProfile";
 import { useTheme } from "@/components/providers/theme-provider";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
   const { theme, toggleTheme } = useTheme();
+  const { profile: social } = useProfile();
   const pathname = usePathname();
 
   const toggleMenu = () => {
@@ -91,13 +92,13 @@ export function Navbar() {
 
           {/* Desktop Social Icons and Theme Toggle */}
           <div className="hidden md:flex items-center space-x-5 order-3">
-            <Link href={social.github} target="_blank" rel="noopener noreferrer" className="group">
+            <Link href={social.github || "#"} target="_blank" rel="noopener noreferrer" className="group">
               <FaGithub className="w-5 h-5 transition-all duration-300 text-gray-900 dark:text-white group-hover:text-[#C06EFF] dark:group-hover:text-[#C06EFF] hover:scale-110" />
             </Link>
-            <Link href={social.linkedin} target="_blank" rel="noopener noreferrer" className="group">
+            <Link href={social.linkedin || "#"} target="_blank" rel="noopener noreferrer" className="group">
               <FaLinkedin className="w-5 h-5 transition-all duration-300 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-500 hover:scale-110" />
             </Link>
-            <Link href={social.facebook} target="_blank" rel="noopener noreferrer" className="group">
+            <Link href={social.facebook || "#"} target="_blank" rel="noopener noreferrer" className="group">
               <FaFacebook className="w-5 h-5 transition-all duration-300 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-500 hover:scale-110" />
             </Link>
             {/* <Link href="#" target="_blank" rel="noopener noreferrer" className="group">
@@ -157,13 +158,13 @@ export function Navbar() {
 
                 {/* Mobile Social Icons and Theme Toggle */}
                 <div className="flex items-center justify-center space-x-6 pb-8">
-                  <Link href={social.github} target="_blank" rel="noopener noreferrer" className="group">
+                  <Link href={social.github || "#"} target="_blank" rel="noopener noreferrer" className="group">
                     <FaGithub className="w-6 h-6 transition-all duration-300 text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-300 hover:scale-110" />
                   </Link>
-                  <Link href={social.linkedin} target="_blank" rel="noopener noreferrer" className="group">
+                  <Link href={social.linkedin || "#"} target="_blank" rel="noopener noreferrer" className="group">
                     <FaLinkedin className="w-6 h-6 transition-all duration-300 text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-300 hover:scale-110" />
                   </Link>
-                  <Link href={social.facebook} target="_blank" rel="noopener noreferrer" className="group">
+                  <Link href={social.facebook || "#"} target="_blank" rel="noopener noreferrer" className="group">
                     <FaFacebook className="w-6 h-6 transition-all duration-300 text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-300 hover:scale-110" />
                   </Link>
                   {/* <Link href="#" target="_blank" rel="noopener noreferrer" className="group">

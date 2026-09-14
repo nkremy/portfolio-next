@@ -8,7 +8,7 @@ import { technologies } from "@/constants/Technologies";
 import Link from "next/link";
 import { Experience } from "@/components/experience";
 import { Education } from "@/components/education";
-import social from "@/constants/Social";
+import { useProfile } from "@/hooks/useProfile";
 import { ProjectsSection } from "@/components/projects-section";
 import Image from "next/image";
 import { Testimonials } from "@/components/testimonials";
@@ -25,6 +25,7 @@ interface CertificationData {
 }
 
 export default function AboutPage() {
+  const { profile: social } = useProfile();
   const [certifications, setCertifications] = useState<CertificationData[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -109,21 +110,8 @@ export default function AboutPage() {
             </h2>
             <div className="space-y-4 text-gray-700 dark:text-gray-300 text-lg leading-relaxed text-justify">
               <p>
-                I am Furqan Ahmad, a passionate Software Engineer and MERN &
-                Next.js Developer, experienced in creating beautiful,
-                functional, and user-centered digital experiences.
-              </p>
-              <p>
-                I specialize in full-stack web development using the MERN stack,
-                Next.js, and modern web technologies. My passion lies in
-                building scalable applications, implementing AI/ML features, and
-                delivering high-quality solutions that exceed expectations.
-              </p>
-              <p>
-                Currently, I am highly motivated to explore the world of Machine
-                Learning and Artificial Intelligence, driven by a curiosity to
-                understand and build intelligent systems that solve real-world
-                problems.
+                {social.bio ||
+                  `I am ${social.name}, a passionate ${social.role || "Software Developer"}, experienced in creating beautiful, functional, and user-centered digital experiences.`}
               </p>
             </div>
           </motion.div>
@@ -141,8 +129,8 @@ export default function AboutPage() {
                 <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 p-1">
                   <div className="w-full h-full rounded-lg overflow-hidden bg-white dark:bg-gray-900">
                     <Image
-                      src={social.profilePic}
-                      alt="Furqan Ahmad"
+                      src={social.image}
+                      alt={social.name}
                       className="w-full h-full object-cover"
                       width={384}
                       height={384}
@@ -436,7 +424,7 @@ export default function AboutPage() {
             >
               <Button variant="outline" size="lg" asChild>
                 <Link
-                  href="/Furqan-Ahmad-Resume.pdf"
+                  href={social.resume || "#"}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

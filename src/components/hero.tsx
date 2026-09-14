@@ -5,10 +5,12 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import social from "@/constants/Social";
+import { useProfile } from "@/hooks/useProfile";
 import Image from "next/image";
 
 export function Hero() {
+  const { profile } = useProfile();
+
   return (
     <section id="home" className="min-h-screen flex items-center px-4 sm:px-6 lg:px-8 pb-10 animate-fade-in">
       <div className="w-full">
@@ -29,8 +31,8 @@ export function Hero() {
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-blue-500/20 to-teal-500/20 rounded-full blur-3xl"></div>
               <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white/10 shadow-2xl">
                 <Image
-                  src={social.profilePic}
-                  alt="Furqan Ahmad"
+                  src={profile.image}
+                  alt={profile.name}
                   className="w-full h-full object-cover"
                   width={500}
                   height={500}
@@ -78,7 +80,7 @@ export function Hero() {
                     className="bg-gradient-to-r from-gray-900 via-purple-800 to-blue-600 dark:from-white dark:via-purple-200 dark:to-blue-300 text-white dark:text-black hover:from-gray-800 hover:via-purple-700 hover:to-blue-500 dark:hover:from-gray-100 dark:hover:via-purple-100 dark:hover:to-blue-200 transition-all duration-300 group text-lg px-8 py-6 shadow-lg hover:shadow-xl"
                     asChild
                   >
-                    <Link href="/Furqan-Ahmad-Resume.pdf" target="_blank" rel="noopener noreferrer">
+                    <Link href={profile.resume || "#"} target="_blank" rel="noopener noreferrer">
                       Resume
                       <ArrowUpRight className="ml-2 h-5 w-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
                     </Link>
