@@ -1,11 +1,12 @@
 import React from "react";
+import Image from "next/image";
 import { TechnologyCategory } from "@/interfaces/Technologies";
 import { DiMongodb } from "react-icons/di";
 import { FaBootstrap, FaCss3Alt, FaGithub, FaGitSquare, FaHtml5, FaJava, FaJsSquare, FaLinux, FaPython, FaReact, FaWindows, FaTools, FaRobot, FaVial } from "react-icons/fa";
 import { FaApple } from "react-icons/fa6";
 import { LiaNode } from "react-icons/lia";
 import { SiDocker, SiIntellijidea, SiOracle, SiPostman, SiRadixui, SiTailwindcss, SiTypescript, SiXcode, SiAndroidstudio, SiJupyter, SiFramework7, SiDotnet, SiChakraui, SiRemix, SiElectron, SiFastapi, SiMaterialformkdocs, SiPostgresql, SiFirebase, SiSupabase, SiClaude, SiOpenai } from "react-icons/si";
-import { TbBrandCpp, TbBrandCSharp, TbBrandKotlin, TbBrandNextjs, TbBrandVscode, TbSql, TbTerminal2, TbTestPipe } from "react-icons/tb";
+import { TbBrandCpp, TbBrandCSharp, TbBrandKotlin, TbBrandNextjs, TbBrandVscode, TbSql, TbTerminal2 } from "react-icons/tb";
 import { FaGolang } from "react-icons/fa6";
 import { VscAzure } from "react-icons/vsc";
 import { AiOutlineCode } from "react-icons/ai";
@@ -92,7 +93,7 @@ export const technologies: TechnologyCategory[] = [
     category: "Testing Tools",
     color: "#2e7d32",
     items: [
-      { name: "Playwright", icon: <TbTestPipe size={32} />, color: "#2EAD33" },
+      { name: "Playwright", icon: <Image src="/playwright-logo.svg" alt="Playwright" width={32} height={32} />, color: "#2EAD33" },
     ],
   },
   {
