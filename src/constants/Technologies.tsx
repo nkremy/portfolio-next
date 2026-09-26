@@ -1,11 +1,11 @@
 import React from "react";
 import { TechnologyCategory } from "@/interfaces/Technologies";
 import { DiMongodb } from "react-icons/di";
-import { FaBootstrap, FaCss3Alt, FaGithub, FaGitSquare, FaHtml5, FaJava, FaJsSquare, FaLinux, FaPython, FaReact, FaWindows, FaTools } from "react-icons/fa";
+import { FaBootstrap, FaCss3Alt, FaGithub, FaGitSquare, FaHtml5, FaJava, FaJsSquare, FaLinux, FaPython, FaReact, FaWindows, FaTools, FaRobot, FaVial } from "react-icons/fa";
 import { FaApple } from "react-icons/fa6";
 import { LiaNode } from "react-icons/lia";
-import { SiDocker, SiIntellijidea, SiOracle, SiPostman, SiRadixui, SiTailwindcss, SiTypescript, SiXcode, SiAndroidstudio, SiJupyter, SiFramework7, SiDotnet, SiChakraui, SiRemix, SiElectron, SiFastapi, SiMaterialformkdocs, SiPostgresql, SiFirebase, SiSupabase } from "react-icons/si";
-import { TbBrandCpp, TbBrandCSharp, TbBrandKotlin, TbBrandNextjs, TbBrandVscode, TbSql } from "react-icons/tb";
+import { SiDocker, SiIntellijidea, SiOracle, SiPostman, SiRadixui, SiTailwindcss, SiTypescript, SiXcode, SiAndroidstudio, SiJupyter, SiFramework7, SiDotnet, SiChakraui, SiRemix, SiElectron, SiFastapi, SiMaterialformkdocs, SiPostgresql, SiFirebase, SiSupabase, SiClaude, SiOpenai } from "react-icons/si";
+import { TbBrandCpp, TbBrandCSharp, TbBrandKotlin, TbBrandNextjs, TbBrandVscode, TbSql, TbTerminal2, TbTestPipe } from "react-icons/tb";
 import { FaGolang } from "react-icons/fa6";
 import { VscAzure } from "react-icons/vsc";
 import { AiOutlineCode } from "react-icons/ai";
@@ -75,6 +75,24 @@ export const technologies: TechnologyCategory[] = [
       { name: "MacOS", icon: <FaApple size={32} />, color: "#A2AAAD" },
       { name: "Windows", icon: <FaWindows size={32} />, color: "#0078D6" },
       { name: "Linux", icon: <FaLinux size={32} />, color: "#FCC624" },
+    ],
+  },
+  {
+    icon: <FaRobot />,
+    category: "AI Coding Agents",
+    color: "#8e44ad",
+    items: [
+      { name: "Claude Code", icon: <SiClaude size={32} />, color: "#D97757" },
+      { name: "Codex", icon: <SiOpenai size={32} />, color: "#000000" },
+      { name: "OpenCode", icon: <TbTerminal2 size={32} />, color: "#00ADD8" },
+    ],
+  },
+  {
+    icon: <FaVial />,
+    category: "Testing Tools",
+    color: "#2e7d32",
+    items: [
+      { name: "Playwright", icon: <TbTestPipe size={32} />, color: "#2EAD33" },
     ],
   },
   {
