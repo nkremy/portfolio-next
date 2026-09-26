@@ -19,6 +19,10 @@ export async function GET() {
         website: true,
         resume: true,
         role: true,
+        skills: true,
+        achievements: true,
+        location: true,
+        phone: true,
       },
     })
 

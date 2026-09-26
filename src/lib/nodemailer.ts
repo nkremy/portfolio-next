@@ -1,4 +1,28 @@
 import nodemailer from 'nodemailer';
+import { prisma } from './prisma';
+
+interface OwnerContact {
+  name: string;
+  email: string;
+  role: string;
+  website: string;
+}
+
+// Looks up the portfolio owner's real name/email/role/website so outgoing
+// emails are signed correctly instead of with the original template author's info.
+const getOwnerContact = async (): Promise<OwnerContact> => {
+  const user = await prisma.user.findFirst({
+    orderBy: { createdAt: 'asc' },
+    select: { name: true, email: true, role: true, website: true },
+  });
+
+  return {
+    name: user?.name || 'The Team',
+    email: user?.email || process.env.EMAIL_RECEIVER || '',
+    role: user?.role || 'Portfolio Owner',
+    website: user?.website || process.env.NEXTAUTH_URL || '',
+  };
+};
 
 // Create reusable transporter object using SMTP transport for sending emails
 const createTransporter = (useReceiver = false) => {
@@ -218,7 +242,11 @@ export const createContactEmailTemplate = (data: {
 };
 
 
-export const createAutoReplyTemplate = (name: string, timestamp?: string) => {
+export const createAutoReplyTemplate = (name: string, timestamp?: string, owner?: OwnerContact) => {
+  const ownerName = owner?.name || 'The Team';
+  const ownerEmail = owner?.email || '';
+  const ownerRole = owner?.role || 'Portfolio Owner';
+  const ownerWebsite = owner?.website || '';
   return `
     <!DOCTYPE html>
     <html lang="en">
@@ -331,9 +359,9 @@ export const createAutoReplyTemplate = (name: string, timestamp?: string) => {
                         <p>I'll review your message and get back to you as soon as possible. In the meantime, feel free to explore more of my work on my website or connect with me on social media.</p>
                     </div>
                     
-                    <div style="text-align: center; margin: 2rem 0;">
-                        <a href="https://www.furqanahmad.me/" class="cta-button">View My Portfolio</a>
-                    </div>
+                    ${ownerWebsite ? `<div style="text-align: center; margin: 2rem 0;">
+                        <a href="${ownerWebsite}" class="cta-button">View My Portfolio</a>
+                    </div>` : ''}
                     
                     <p>Looking forward to speaking with you soon!</p>
                     
@@ -356,15 +384,15 @@ export const createAutoReplyTemplate = (name: string, timestamp?: string) => {
             
             <div class="footer">
                 <p>Best regards,</p>
-                <p><strong>Furqan Ahmad</strong><br>
-                Software Engineer<br>
-                <a href="mailto:hfurqan.se@gmail.com" style="color: #3b82f6; text-decoration: none;">hfurqan.se@gmail.com</a><br>
-                <a href="https://www.furqanahmad.me/" style="color: #3b82f6; text-decoration: none;">https://www.furqanahmad.me/</a></p>
+                <p><strong>${ownerName}</strong><br>
+                ${ownerRole}<br>
+                ${ownerEmail ? `<a href="mailto:${ownerEmail}" style="color: #3b82f6; text-decoration: none;">${ownerEmail}</a><br>` : ''}
+                ${ownerWebsite ? `<a href="${ownerWebsite}" style="color: #3b82f6; text-decoration: none;">${ownerWebsite}</a>` : ''}</p>
             </div>
 
-            <div style="text-align: center; margin: 2rem 0;">
-                <a href="https://www.furqanahmad.me/" target="_blank" rel="noopener noreferrer" class="cta-button">View My Portfolio</a>
-            </div>
+            ${ownerWebsite ? `<div style="text-align: center; margin: 2rem 0;">
+                <a href="${ownerWebsite}" target="_blank" rel="noopener noreferrer" class="cta-button">View My Portfolio</a>
+            </div>` : ''}
         </div>
     </body>
     </html>
@@ -443,7 +471,8 @@ export const sendAutoReply = async (senderEmail: string, senderName: string) => 
     timeZoneName: 'short'
   });
 
-  const html = createAutoReplyTemplate(senderName, timestamp);
+  const owner = await getOwnerContact();
+  const html = createAutoReplyTemplate(senderName, timestamp, owner);
   
   return await sendEmail({
     to: senderEmail,
@@ -458,7 +487,11 @@ export const createQueryReplyTemplate = (data: {
     subject: string;
     message: string;
     timestamp?: string;
-}) => {
+}, owner?: OwnerContact) => {
+    const ownerName = owner?.name || 'The Team';
+    const ownerEmail = owner?.email || '';
+    const ownerRole = owner?.role || 'Portfolio Owner';
+    const ownerWebsite = owner?.website || '';
     return `
         <!DOCTYPE html>
         <html lang="en">
@@ -523,10 +556,10 @@ export const createQueryReplyTemplate = (data: {
                 </div>
                 <div class="footer">
                     <p>Best regards,</p>
-                    <p><strong>Furqan Ahmad</strong><br>
-                    Software Engineer<br>
-                    <a href="mailto:hfurqan.se@gmail.com" style="color: #3b82f6; text-decoration: none;">hfurqan.se@gmail.com</a><br>
-                    <a href="https://www.furqanahmad.me/" style="color: #3b82f6; text-decoration: none;">https://www.furqanahmad.me/</a></p>
+                    <p><strong>${ownerName}</strong><br>
+                    ${ownerRole}<br>
+                    ${ownerEmail ? `<a href="mailto:${ownerEmail}" style="color: #3b82f6; text-decoration: none;">${ownerEmail}</a><br>` : ''}
+                    ${ownerWebsite ? `<a href="${ownerWebsite}" style="color: #3b82f6; text-decoration: none;">${ownerWebsite}</a>` : ''}</p>
                 </div>
             </div>
         </body>
@@ -550,12 +583,13 @@ export const sendQueryReplyEmail = async (data: {
         timeZoneName: 'short'
     });
 
+    const owner = await getOwnerContact();
     const html = createQueryReplyTemplate({
         name: data.name,
         subject: data.subject,
         message: data.message,
         timestamp,
-    });
+    }, owner);
 
     return await sendEmail({
         to: data.to,

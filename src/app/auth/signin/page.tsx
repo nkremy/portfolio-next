@@ -10,8 +10,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Mail, Lock, Eye, EyeOff, User, Shield, Sparkles, ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
 import Image from "next/image"
+import { useProfile } from "@/hooks/useProfile"
 
 export default function SignIn() {
+  const { profile } = useProfile()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
@@ -73,8 +75,8 @@ export default function SignIn() {
                   <div className="w-full h-full bg-white dark:bg-gray-900 rounded-full p-1">
                     <div className="w-full h-full rounded-full overflow-hidden bg-gray-100 dark:bg-gray-800">
                       <Image
-                        src="https://res.cloudinary.com/dlu5bobhr/image/upload/v1747152675/vn99iw3aztwx6qmpchjk.jpg"
-                        alt="Furqan Ahmad"
+                        src={profile.image}
+                        alt={profile.name}
                         className="w-full h-full object-cover rounded-full"
                         width={80}
                         height={80}
@@ -107,11 +109,11 @@ export default function SignIn() {
                   Welcome Back
                 </h1>
                 <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-200">
-                  Furqan Ahmad
+                  {profile.name}
                 </h2>
                 <p className="text-sm text-gray-600 !-mt-1 dark:text-gray-400 flex items-center justify-start gap-1 mt-1">
                   <User className="w-3 h-3" />
-                  Software Developer
+                  {profile.role}
                 </p>
               </motion.div>
             </motion.div>

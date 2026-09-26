@@ -17,6 +17,10 @@ export interface PublicProfile {
   website: string | null;
   resume: string | null;
   role: string;
+  skills: string[];
+  achievements: string[];
+  location: string | null;
+  phone: string | null;
 }
 
 const fallbackProfile: PublicProfile = {
@@ -33,6 +37,10 @@ const fallbackProfile: PublicProfile = {
   website: null,
   resume: null,
   role: social.description,
+  skills: [],
+  achievements: [],
+  location: null,
+  phone: null,
 };
 
 export function useProfile() {
@@ -62,6 +70,10 @@ export function useProfile() {
             website: data.data.website,
             resume: data.data.resume,
             role: data.data.role || fallbackProfile.role,
+            skills: Array.isArray(data.data.skills) ? data.data.skills : [],
+            achievements: Array.isArray(data.data.achievements) ? data.data.achievements : [],
+            location: data.data.location || null,
+            phone: data.data.phone || null,
           });
         }
       } catch (error) {

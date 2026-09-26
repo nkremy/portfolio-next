@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from "lucide-react";
 import Link from "next/link";
+import { useProfile } from "@/hooks/useProfile";
 
 interface FormData {
   name: string;
@@ -22,6 +23,7 @@ interface FormStatus {
 }
 
 export default function ContactPage() {
+  const { profile: social } = useProfile();
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -168,50 +170,54 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900 dark:text-white">Email</h3>
-                        <p className="text-gray-600 dark:text-gray-300">hfurqan.se@gmail.com</p>
+                        <p className="text-gray-600 dark:text-gray-300">{social.email}</p>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
               </motion.div>
 
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
-              >
-                <Card className="p-6 hover:shadow-lg transition-all duration-300">
-                  <CardContent className="p-0">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/20 rounded-lg flex items-center justify-center">
-                        <Phone className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+              {social.phone && (
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Card className="p-6 hover:shadow-lg transition-all duration-300">
+                    <CardContent className="p-0">
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/20 rounded-lg flex items-center justify-center">
+                          <Phone className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-gray-900 dark:text-white">Phone</h3>
+                          <p className="text-gray-600 dark:text-gray-300">{social.phone}</p>
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900 dark:text-white">Phone</h3>
-                        <p className="text-gray-600 dark:text-gray-300">+92 (330) 408-2111</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              )}
 
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
-              >
-                <Card className="p-6 hover:shadow-lg transition-all duration-300">
-                  <CardContent className="p-0">
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-green-100 dark:bg-green-900/20 rounded-lg flex items-center justify-center">
-                        <MapPin className="w-6 h-6 text-green-600 dark:text-green-400" />
+              {social.location && (
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Card className="p-6 hover:shadow-lg transition-all duration-300">
+                    <CardContent className="p-0">
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-green-100 dark:bg-green-900/20 rounded-lg flex items-center justify-center">
+                          <MapPin className="w-6 h-6 text-green-600 dark:text-green-400" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-gray-900 dark:text-white">Location</h3>
+                          <p className="text-gray-600 dark:text-gray-300">{social.location}</p>
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900 dark:text-white">Location</h3>
-                        <p className="text-gray-600 dark:text-gray-300">Lahore, Pakistan</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              )}
             </div>
 
             {/* Social Links */}
@@ -219,27 +225,35 @@ export default function ContactPage() {
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                 Follow Me
               </h3>
-              <div className="flex gap-4">
-                <Button variant="outline" size="sm" asChild>
-                  <Link href="https://github.com/furqanahmad03" target="_blank" rel="noopener noreferrer">
-                    GitHub
-                  </Link>
-                </Button>
-                <Button variant="outline" size="sm" asChild>
-                  <Link href="https://linkedin.com/in/furqanahmad03" target="_blank" rel="noopener noreferrer">
-                    LinkedIn
-                  </Link>
-                </Button>
-                <Button variant="outline" size="sm" asChild>
-                  <Link href="https://www.upwork.com/freelancers/~0139f1fee8634e25ff" target="_blank" rel="noopener noreferrer">
-                    Upwork
-                  </Link>
-                </Button>
-                {/* <Button variant="outline" size="sm" asChild>
-                  <Link href="https://twitter.com/furqanahmad03" target="_blank" rel="noopener noreferrer">
-                    Twitter
-                  </Link>
-                </Button> */}
+              <div className="flex gap-4 flex-wrap">
+                {social.github && (
+                  <Button variant="outline" size="sm" asChild>
+                    <Link href={social.github} target="_blank" rel="noopener noreferrer">
+                      GitHub
+                    </Link>
+                  </Button>
+                )}
+                {social.linkedin && (
+                  <Button variant="outline" size="sm" asChild>
+                    <Link href={social.linkedin} target="_blank" rel="noopener noreferrer">
+                      LinkedIn
+                    </Link>
+                  </Button>
+                )}
+                {social.website && (
+                  <Button variant="outline" size="sm" asChild>
+                    <Link href={social.website} target="_blank" rel="noopener noreferrer">
+                      Website
+                    </Link>
+                  </Button>
+                )}
+                {social.twitter && (
+                  <Button variant="outline" size="sm" asChild>
+                    <Link href={social.twitter} target="_blank" rel="noopener noreferrer">
+                      Twitter
+                    </Link>
+                  </Button>
+                )}
               </div>
             </div>
           </motion.div>

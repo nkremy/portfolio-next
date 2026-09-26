@@ -207,12 +207,14 @@ export function Footer() {
                     {social.email}
                   </Link>
                 </div>
-                <div className="flex items-center space-x-3">
-                  <MapPin className="w-5 h-5 text-purple-600 dark:text-white" />
-                  <span className="text-gray-600 dark:text-white/80">
-                    Pakistan
-                  </span>
-                </div>
+                {social.location && (
+                  <div className="flex items-center space-x-3">
+                    <MapPin className="w-5 h-5 text-purple-600 dark:text-white" />
+                    <span className="text-gray-600 dark:text-white/80">
+                      {social.location}
+                    </span>
+                  </div>
+                )}
                 <div className="flex items-center space-x-3">
                   <Link href="/contact" className="flex gap-3">
                     <Phone className="w-5 h-5 text-purple-600 dark:text-white" />
