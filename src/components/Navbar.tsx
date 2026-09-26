@@ -50,6 +50,7 @@ export function Navbar() {
               variant="ghost"
               size="sm"
               onClick={toggleMenu}
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
               className="transition-colors duration-300 text-gray-900 hover:bg-gray-900/10 dark:text-white dark:hover:bg-white/10"
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -131,6 +132,7 @@ export function Navbar() {
                     variant="ghost"
                     size="sm"
                     onClick={closeMenu}
+                    aria-label="Close mobile menu"
                     className="transition-colors duration-300 text-gray-900 hover:bg-gray-900/10 dark:text-white dark:hover:bg-white/10 mt-4 ml-2"
                   >
                     <X className="h-6 w-6" />

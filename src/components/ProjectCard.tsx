@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, Github, Eye, ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -16,6 +16,8 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, className = "" }: ProjectCardProps) {
+  const [imageError, setImageError] = useState(false);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -27,26 +29,25 @@ export function ProjectCard({ project, className = "" }: ProjectCardProps) {
       <Card className="py-0 group relative overflow-hidden bg-white dark:bg-white/5 border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 h-full">
         {/* Thumbnail Container */}
         <div className="relative aspect-[16/10] overflow-hidden bg-gray-100 dark:bg-gray-900">
-          <Image
-            src={project.thumbnail}
-            alt={project.title}
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-            fill
-            sizes="(min-width: 1280px) 384px, (min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw"
-            onError={(e) => {
-              e.currentTarget.style.display = "none";
-              e.currentTarget.nextElementSibling?.classList.remove("hidden");
-            }}
-          />
-          {/* Fallback for missing images */}
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center hidden">
-            <div className="text-center">
-              <ExternalLink className="w-12 h-12 text-white mx-auto mb-2" />
-              <span className="text-white text-sm font-medium">
-                Project Image
-              </span>
+          {!imageError ? (
+            <Image
+              src={project.thumbnail}
+              alt={project.title}
+              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+              fill
+              sizes="(min-width: 1280px) 384px, (min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw"
+              onError={() => setImageError(true)}
+            />
+          ) : (
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center">
+              <div className="text-center">
+                <ExternalLink className="w-12 h-12 text-white mx-auto mb-2" />
+                <span className="text-white text-sm font-medium">
+                  Project Image
+                </span>
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Hover Overlay with View Project Button */}
           <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">

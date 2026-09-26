@@ -14,6 +14,7 @@ import { useProfile } from "@/hooks/useProfile"
 
 export default function SignIn() {
   const { profile } = useProfile()
+  const [imageError, setImageError] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
@@ -74,21 +75,25 @@ export default function SignIn() {
                 <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full p-1 shadow-lg">
                   <div className="w-full h-full bg-white dark:bg-gray-900 rounded-full p-1">
                     <div className="w-full h-full rounded-full overflow-hidden bg-gray-100 dark:bg-gray-800">
-                      <Image
-                        src={profile.image}
-                        alt={profile.name}
-                        className="w-full h-full object-cover rounded-full"
-                        width={80}
-                        height={80}
-                        onError={(e) => {
-                          console.log("Image failed to load");
-                          e.currentTarget.style.display = 'none';
-                          e.currentTarget.nextElementSibling?.classList.remove('hidden');
-                        }}
-                      />
-                      <div className="hidden w-full h-full rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-xl">
-                        FA
-                      </div>
+                      {!imageError ? (
+                        <Image
+                          src={profile.image}
+                          alt={profile.name}
+                          className="w-full h-full object-cover rounded-full"
+                          width={80}
+                          height={80}
+                          onError={() => setImageError(true)}
+                        />
+                      ) : (
+                        <div className="w-full h-full rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-xl">
+                          {profile.name
+                            .split(" ")
+                            .map((part) => part[0])
+                            .join("")
+                            .slice(0, 2)
+                            .toUpperCase()}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

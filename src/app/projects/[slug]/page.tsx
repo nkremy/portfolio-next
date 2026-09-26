@@ -30,6 +30,33 @@ import Link from "next/link";
 import { notFound, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
+function CarouselSlideImage({ src, alt }: { src: string; alt: string }) {
+  const [imageError, setImageError] = useState(false);
+
+  if (imageError) {
+    return (
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center">
+        <div className="text-center">
+          <Code className="w-16 h-16 text-white mx-auto mb-4" />
+          <span className="text-white text-xl font-semibold">
+            Project Screenshot
+          </span>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      className="w-full h-full object-contain"
+      fill
+      onError={() => setImageError(true)}
+    />
+  );
+}
+
 interface ProjectPageProps {
   params: Promise<{
     slug: string;
@@ -295,27 +322,11 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                   <CarouselContent>
                     {carouselImages.map((image: string, index: number) => (
                       <CarouselItem key={index}>
-                        <div className="aspect-[16/10] w-full max-w-4xl mx-auto relative overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-900"> 
-                          <Image
+                        <div className="aspect-[16/10] w-full max-w-4xl mx-auto relative overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-900">
+                          <CarouselSlideImage
                             src={image}
                             alt={`${project.title} - Image ${index + 1}`}
-                            className="w-full h-full object-contain"
-                            fill
-                            onError={(e) => {
-                              e.currentTarget.style.display = "none";
-                              e.currentTarget.nextElementSibling?.classList.remove(
-                                "hidden"
-                              );
-                            }}
                           />
-                          <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center hidden">
-                            <div className="text-center">
-                              <Code className="w-16 h-16 text-white mx-auto mb-4" />
-                              <span className="text-white text-xl font-semibold">
-                                Project Screenshot
-                              </span>
-                            </div>
-                          </div>
                         </div>
                       </CarouselItem>
                     ))}

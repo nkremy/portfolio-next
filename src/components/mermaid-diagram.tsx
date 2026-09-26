@@ -8,12 +8,43 @@ interface MermaidDiagramProps {
   className?: string
 }
 
+const MERMAID_SRC = "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"
+
+let mermaidLoadPromise: Promise<void> | null = null
+
+// Loaded lazily, only when a diagram is actually rendered, and injected after
+// mount so it never blocks the page's `load` event the way a global <script>
+// tag in the document head would on every single page.
+function loadMermaid(): Promise<void> {
+  if (typeof window === "undefined") return Promise.resolve()
+  if (window.mermaid) return Promise.resolve()
+  if (mermaidLoadPromise) return mermaidLoadPromise
+
+  mermaidLoadPromise = new Promise((resolve, reject) => {
+    const script = document.createElement("script")
+    script.src = MERMAID_SRC
+    script.async = true
+    script.onload = () => resolve()
+    script.onerror = () => reject(new Error("Failed to load mermaid"))
+    document.body.appendChild(script)
+  })
+
+  return mermaidLoadPromise
+}
+
 export function MermaidDiagram({ diagram, className = "" }: MermaidDiagramProps) {
   const ref = useRef<HTMLDivElement>(null)
   const { theme } = useTheme()
 
   useEffect(() => {
     const initMermaid = async () => {
+      try {
+        await loadMermaid()
+      } catch (error) {
+        console.error("Error loading mermaid:", error)
+        return
+      }
+
       if (typeof window !== "undefined" && window.mermaid) {
         try {
           // Configure mermaid based on theme

@@ -72,7 +72,6 @@ export default function RootLayout({
             `,
           }}
         />
-        <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js" async></script>
       </head>
       <body
         className={`antialiased`}

@@ -28,6 +28,7 @@ export default function AboutPage() {
   const { profile: social } = useProfile();
   const [certifications, setCertifications] = useState<CertificationData[]>([]);
   const [loading, setLoading] = useState(true);
+  const [imageError, setImageError] = useState(false);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -128,23 +129,27 @@ export default function AboutPage() {
                 {/* Gradient border effect */}
                 <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 p-1">
                   <div className="w-full h-full rounded-lg overflow-hidden bg-white dark:bg-gray-900">
-                    <Image
-                      src={social.image}
-                      alt={social.name}
-                      className="w-full h-full object-cover"
-                      width={384}
-                      height={384}
-                      onError={(e) => {
-                        // Fallback to gradient if image fails to load
-                        e.currentTarget.style.display = "none";
-                        e.currentTarget.nextElementSibling?.classList.remove(
-                          "hidden"
-                        );
-                      }}
-                    />
-                    <div className="w-full h-full bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center hidden">
-                      <span className="text-white text-4xl font-bold">FA</span>
-                    </div>
+                    {!imageError ? (
+                      <Image
+                        src={social.image}
+                        alt={social.name}
+                        className="w-full h-full object-cover"
+                        width={384}
+                        height={384}
+                        onError={() => setImageError(true)}
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center">
+                        <span className="text-white text-4xl font-bold">
+                          {social.name
+                            .split(" ")
+                            .map((part) => part[0])
+                            .join("")
+                            .slice(0, 2)
+                            .toUpperCase()}
+                        </span>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
