@@ -3,7 +3,8 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, Github, Eye, ArrowRight } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -17,6 +18,7 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project, className = "" }: ProjectCardProps) {
   const [imageError, setImageError] = useState(false);
+  const t = useTranslations("Projects");
 
   return (
     <motion.div
@@ -58,7 +60,7 @@ export function ProjectCard({ project, className = "" }: ProjectCardProps) {
             >
               <Link href={`/projects/${project.slug}`}>
                 <Eye className="w-5 h-5 mr-2" />
-                View Project
+                {t("viewProject")}
               </Link>
             </Button>
           </div>

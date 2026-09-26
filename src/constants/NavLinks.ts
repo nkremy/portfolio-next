@@ -1,9 +1,9 @@
 const NavLinks = [
-  { href: "/about", title: "About" },
-  { href: "/projects", title: "Projects" },
-  { href: "/blogs", title: "Blogs" },
-  { href: "/certifications", title: "Certifications" },
-  { href: "/contact", title: "Contact" },
-];
+  { href: "/about", key: "about" },
+  { href: "/projects", key: "projects" },
+  { href: "/blogs", key: "blogs" },
+  { href: "/certifications", key: "certifications" },
+  { href: "/contact", key: "contact" },
+] as const;
 
 export default NavLinks;

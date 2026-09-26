@@ -1,4 +1,3 @@
-import { LayoutWrapper } from "@/components/layout-wrapper";
 import AuthProvider from "@/components/providers/session-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { SmoothScroll } from "@/components/smooth-scroll";
@@ -79,9 +78,7 @@ export default function RootLayout({
         <AuthProvider>
           <ThemeProvider>
             <SmoothScroll>
-              <LayoutWrapper>
               {children}
-              </LayoutWrapper>
               <Toaster />
             </SmoothScroll>
           </ThemeProvider>

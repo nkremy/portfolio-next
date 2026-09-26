@@ -7,7 +7,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { useProfile } from "@/hooks/useProfile";
 
 interface FormData {
@@ -24,6 +25,7 @@ interface FormStatus {
 
 export default function ContactPage() {
   const { profile: social } = useProfile();
+  const t = useTranslations("Contact");
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -46,7 +48,7 @@ export default function ContactPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormStatus({ type: 'loading', message: 'Sending message...' });
+    setFormStatus({ type: 'loading', message: t('sending') });
 
     try {
       const response = await fetch('/api/contact', {
@@ -60,9 +62,9 @@ export default function ContactPage() {
       const result = await response.json();
 
       if (result.success) {
-        setFormStatus({ 
-          type: 'success', 
-          message: 'Thank you! Your message has been sent successfully.' 
+        setFormStatus({
+          type: 'success',
+          message: t('successTitle')
         });
         setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
@@ -72,9 +74,9 @@ export default function ContactPage() {
         });
       }
     } catch (error) {
-      setFormStatus({ 
-        type: 'error', 
-        message: 'Network error. Please check your connection and try again.' 
+      setFormStatus({
+        type: 'error',
+        message: t('networkError')
       });
     }
   };
@@ -127,15 +129,15 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
           >
-            Get In Touch
+            {t("title")}
           </motion.h1>
-          <motion.p 
+          <motion.p
             className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
           >
-            Ready to start your next project? Let&apos;s discuss how I can help bring your ideas to life.
+            {t("subtitle")}
           </motion.p>
         </motion.div>
 
@@ -148,12 +150,10 @@ export default function ContactPage() {
           {/* Contact Information */}
           <motion.div variants={itemVariants}>
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
-              Let&apos;s Connect
+              {t("letsConnect")}
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-              I&apos;m always excited to work on new projects and collaborate with amazing people. 
-              Whether you have a specific project in mind or just want to chat about technology, 
-              I&apos;d love to hear from you.
+              {t("letsConnectDescription")}
             </p>
 
             {/* Contact Cards */}
@@ -169,7 +169,7 @@ export default function ContactPage() {
                         <Mail className="w-6 h-6 text-purple-600 dark:text-purple-400" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-gray-900 dark:text-white">Email</h3>
+                        <h3 className="font-semibold text-gray-900 dark:text-white">{t("email")}</h3>
                         <p className="text-gray-600 dark:text-gray-300">{social.email}</p>
                       </div>
                     </div>
@@ -189,7 +189,7 @@ export default function ContactPage() {
                           <Phone className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-gray-900 dark:text-white">Phone</h3>
+                          <h3 className="font-semibold text-gray-900 dark:text-white">{t("phone")}</h3>
                           <p className="text-gray-600 dark:text-gray-300">{social.phone}</p>
                         </div>
                       </div>
@@ -210,7 +210,7 @@ export default function ContactPage() {
                           <MapPin className="w-6 h-6 text-green-600 dark:text-green-400" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-gray-900 dark:text-white">Location</h3>
+                          <h3 className="font-semibold text-gray-900 dark:text-white">{t("location")}</h3>
                           <p className="text-gray-600 dark:text-gray-300">{social.location}</p>
                         </div>
                       </div>
@@ -223,7 +223,7 @@ export default function ContactPage() {
             {/* Social Links */}
             <div className="mt-8">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                Follow Me
+                {t("followMe")}
               </h3>
               <div className="flex gap-4 flex-wrap">
                 {social.github && (
@@ -262,33 +262,15 @@ export default function ContactPage() {
           <motion.div variants={itemVariants}>
             <Card className="p-8 shadow-xl">
               <CardContent className="p-0">
-                <div>
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                      className="mb-4 bg-gray-900 hover:bg-gray-800 !text-white border-gray-900 hover:border-gray-800"
-                    asChild
-                  >
-                    <Link 
-                      href="https://www.upwork.com/freelancers/~0139f1fee8634e25ff" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                    >
-                      Connect on Upwork
-                    </Link>
-                  </Button>
-                  <span className="ml-2">or Here</span>
-                </div>
-
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-                  Send a Message
+                  {t("sendMessage")}
                 </h2>
                 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        Name / Company Name *
+                        {t("formName")} *
                       </label>
                       <Input
                         id="name"
@@ -298,12 +280,12 @@ export default function ContactPage() {
                         value={formData.name}
                         onChange={handleInputChange}
                         className="w-full"
-                        placeholder="Your name"
+                        placeholder={t("namePlaceholder")}
                       />
                     </div>
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        Email *
+                        {t("formEmail")} *
                       </label>
                       <Input
                         id="email"
@@ -313,14 +295,14 @@ export default function ContactPage() {
                         value={formData.email}
                         onChange={handleInputChange}
                         className="w-full"
-                        placeholder="your.email@example.com"
+                        placeholder={t("emailPlaceholder")}
                       />
                     </div>
                   </div>
 
                   <div>
                     <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      Subject *
+                      {t("formSubject")} *
                     </label>
                     <Input
                       id="subject"
@@ -330,13 +312,13 @@ export default function ContactPage() {
                       value={formData.subject}
                       onChange={handleInputChange}
                       className="w-full"
-                      placeholder="What's this about?"
+                      placeholder={t("subjectPlaceholder")}
                     />
                   </div>
 
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      Message *
+                      {t("formMessage")} *
                     </label>
                     <Textarea
                       id="message"
@@ -345,7 +327,7 @@ export default function ContactPage() {
                       value={formData.message}
                       onChange={handleInputChange}
                       className="w-full min-h-[120px]"
-                      placeholder="To hire for project/company or ask me to develop project for you..."
+                      placeholder={t("messagePlaceholder")}
                     />
                   </div>
 
@@ -382,12 +364,12 @@ export default function ContactPage() {
                     {formStatus.type === 'loading' ? (
                       <>
                         <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
-                        Sending...
+                        {t("sending")}
                       </>
                     ) : (
                       <>
                         <Send className="w-4 h-4 mr-2" />
-                        Send Message
+                        {t("send")}
                       </>
                     )}
                   </Button>
@@ -410,30 +392,29 @@ export default function ContactPage() {
             transition={{ duration: 0.3 }}
           >
             <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
-              Ready to Start Your Project?
+              {t("readyToStart")}
             </h3>
             <p className="text-gray-600 dark:text-purple-100 mb-6 max-w-2xl mx-auto">
-              I&apos;m always excited to work on new projects and help bring innovative ideas to life. 
-              Let&apos;s discuss how we can work together to achieve your goals.
+              {t("readyToStartDescription")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white"
                 asChild
               >
                 <Link href="/projects">
-                  View My Work
+                  {t("viewMyWork")}
                 </Link>
               </Button>
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 variant="outline"
                 className="border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-purple-600"
                 asChild
               >
                 <Link href="/about">
-                  Learn More About Me
+                  {t("learnMoreAboutMe")}
                 </Link>
               </Button>
             </div>

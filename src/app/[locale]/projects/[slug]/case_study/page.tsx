@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { notFound, useParams } from "next/navigation"
-import Link from "next/link"
+import { Link } from "@/i18n/navigation";
 import Image from "next/image"
 import { ArrowLeft, BookOpenText } from "lucide-react"
 import { Button } from "@/components/ui/button"

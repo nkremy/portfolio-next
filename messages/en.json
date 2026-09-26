@@ -1,0 +1,88 @@
+{
+  "Nav": {
+    "about": "About",
+    "projects": "Projects",
+    "blogs": "Blogs",
+    "certifications": "Certifications",
+    "contact": "Contact",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "closeMobileMenu": "Close mobile menu"
+  },
+  "Hero": {
+    "resume": "Resume",
+    "contact": "Contact",
+    "tagline": "Turning Vision Into Reality With Code And Design.",
+    "subtitle": "As a skilled full-stack developer, I am dedicated to turning ideas into innovative web applications. Explore my latest projects and articles, showcasing my expertise in React.js and web development."
+  },
+  "About": {
+    "whatIDo": "What I Do",
+    "readyToBuild": "Ready to build something amazing?",
+    "readyToBuildDescription": "Let's discuss your project and bring your vision to life.",
+    "noSkills": "No skills added yet. Add them from your",
+    "dashboard": "dashboard",
+    "biography": "Biography"
+  },
+  "Footer": {
+    "quickLinks": "Quick Links",
+    "getInTouch": "Get In Touch",
+    "availableForHire": "Available for hire",
+    "rights": "All rights reserved."
+  },
+  "Contact": {
+    "title": "Get In Touch",
+    "subtitle": "Ready to start your next project? Let's discuss how I can help bring your ideas to life.",
+    "letsConnect": "Let's Connect",
+    "letsConnectDescription": "I'm always excited to work on new projects and collaborate with amazing people. Whether you have a specific project in mind or just want to chat about technology, I'd love to hear from you.",
+    "email": "Email",
+    "phone": "Phone",
+    "location": "Location",
+    "followMe": "Follow Me",
+    "formName": "Name / Company Name",
+    "formEmail": "Email",
+    "formSubject": "Subject",
+    "formMessage": "Message",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "your@email.com",
+    "subjectPlaceholder": "Subject of your message",
+    "messagePlaceholder": "Tell me about your project...",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "successTitle": "Thank you! Your message has been sent successfully.",
+    "networkError": "Network error. Please check your connection and try again.",
+    "sendMessage": "Send a Message",
+    "readyToStart": "Ready to Start Your Project?",
+    "readyToStartDescription": "I'm always excited to work on new projects and help bring innovative ideas to life. Let's discuss how we can work together to achieve your goals.",
+    "viewMyWork": "View My Work",
+    "learnMoreAboutMe": "Learn More About Me"
+  },
+  "Projects": {
+    "title": "My Projects",
+    "subtitle": "A showcase of my recent work and experience.",
+    "viewAll": "View All Projects",
+    "viewProject": "View Project",
+    "noProjects": "No projects yet.",
+    "allProjects": "All Projects",
+    "webApps": "Web Apps",
+    "desktopApps": "Desktop Apps",
+    "aiMl": "AI/ML",
+    "backToPagination": "Back to Pagination",
+    "noProjectsFound": "No projects found",
+    "noProjectsMatch": "No projects match the selected category.",
+    "featuredProjects": "Featured Projects",
+    "featuredProjectsSubtitle": "Explore some of my recent work that showcases my skills in full-stack development, UI/UX design, and innovative problem-solving.",
+    "viewMoreProjects": "View More Projects"
+  },
+  "Certifications": {
+    "title": "Certifications",
+    "subtitle": "Professional certifications and achievements that validate my expertise and continuous learning journey."
+  },
+  "Blogs": {
+    "title": "Blogs",
+    "subtitle": "Notes from shipped work, architecture decisions, and case studies from real projects.",
+    "readMore": "Read More"
+  },
+  "Common": {
+    "loading": "Loading..."
+  }
+}

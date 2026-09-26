@@ -1,14 +1,15 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FaGithub, FaLinkedin, FaFacebook } from "react-icons/fa";
 import NavLinks from "@/constants/NavLinks";
 import { useProfile } from "@/hooks/useProfile";
 import { useTheme } from "@/components/providers/theme-provider";
+import { LanguageSwitcher } from "@/components/language-switcher";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -16,6 +17,7 @@ export function Navbar() {
   const { theme, toggleTheme } = useTheme();
   const { profile: social } = useProfile();
   const pathname = usePathname();
+  const t = useTranslations("Nav");
 
   const toggleMenu = () => {
     if (isMenuOpen) {
@@ -50,7 +52,7 @@ export function Navbar() {
               variant="ghost"
               size="sm"
               onClick={toggleMenu}
-              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              aria-label={isMenuOpen ? t("closeMenu") : t("openMenu")}
               className="transition-colors duration-300 text-gray-900 hover:bg-gray-900/10 dark:text-white dark:hover:bg-white/10"
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -65,7 +67,7 @@ export function Navbar() {
                 href={link.href}
                 className="relative font-semibold transition-all duration-300 bg-gradient-to-r from-gray-900 via-purple-800 to-blue-600 dark:from-white dark:via-purple-200 dark:to-blue-300 bg-clip-text text-transparent hover:from-gray-600 hover:via-purple-600 hover:to-blue-400 dark:hover:from-gray-300 dark:hover:via-purple-100 dark:hover:to-blue-200 group"
               >
-                {link.title}
+                {t(link.key)}
                 {pathname === link.href && (
                   <span 
                     className="absolute -bottom-1 left-0 w-full h-0.5 transition-all duration-300 bg-gradient-to-r from-gray-900 via-purple-800 to-blue-600 dark:from-white dark:via-purple-200 dark:to-blue-300"
@@ -116,6 +118,7 @@ export function Navbar() {
             >
               {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
+            <LanguageSwitcher />
           </div>
         </div>
 
@@ -132,7 +135,7 @@ export function Navbar() {
                     variant="ghost"
                     size="sm"
                     onClick={closeMenu}
-                    aria-label="Close mobile menu"
+                    aria-label={t("closeMobileMenu")}
                     className="transition-colors duration-300 text-gray-900 hover:bg-gray-900/10 dark:text-white dark:hover:bg-white/10 mt-4 ml-2"
                   >
                     <X className="h-6 w-6" />
@@ -148,7 +151,7 @@ export function Navbar() {
                       onClick={closeMenu}
                       className="relative text-2xl font-medium transition-all duration-300 bg-gradient-to-r from-gray-900 via-purple-800 to-blue-600 dark:from-white dark:via-purple-200 dark:to-blue-300 bg-clip-text text-transparent hover:from-gray-600 hover:via-purple-600 hover:to-blue-400 dark:hover:from-gray-300 dark:hover:via-purple-100 dark:hover:to-blue-200"
                     >
-                      {link.title}
+                      {t(link.key)}
                       {pathname === link.href && (
                         <span 
                           className="absolute -bottom-1 left-0 w-full h-0.5 transition-all duration-300 bg-gradient-to-r from-gray-900 via-purple-800 to-blue-600 dark:from-white dark:via-purple-200 dark:to-blue-300"
@@ -183,6 +186,7 @@ export function Navbar() {
                   >
                     {theme === "dark" ? <Sun className="h-6 w-6" /> : <Moon className="h-6 w-6" />}
                   </Button>
+                  <LanguageSwitcher />
                 </div>
               </div>
             </div>

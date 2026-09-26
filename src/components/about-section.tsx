@@ -3,6 +3,7 @@
 import React from "react";
 import { Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { useProfile } from "@/hooks/useProfile";
 
 const gradients = [
@@ -20,6 +21,7 @@ const gradients = [
 export function AboutSection() {
   const { profile, loading } = useProfile();
   const skills = profile.skills;
+  const t = useTranslations("About");
 
   return (
     <section id="about" className="py-20 bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-[rgb(27,27,27)] dark:via-[rgb(20,20,20)] dark:to-[rgb(15,15,15)]">
@@ -40,7 +42,7 @@ export function AboutSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           >
-            What I Do
+            {t("whatIDo")}
           </motion.h2>
           <motion.p
             className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
@@ -56,9 +58,9 @@ export function AboutSection() {
         {/* Skills Grid */}
         {!loading && skills.length === 0 ? (
           <div className="text-center text-gray-500 dark:text-gray-400 py-10">
-            Aucune compétence renseignée pour le moment. Ajoute-les depuis ton{" "}
+            {t("noSkills")}{" "}
             <a href="/dashboard/profile" className="underline hover:text-purple-600 dark:hover:text-purple-300">
-              tableau de bord
+              {t("dashboard")}
             </a>
             .
           </div>
@@ -116,10 +118,10 @@ export function AboutSection() {
             </motion.div>
             <div className="text-left">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                Ready to build something amazing?
+                {t("readyToBuild")}
               </h3>
               <p className="text-gray-600 dark:text-gray-300">
-                Let&apos;s discuss your project and bring your vision to life.
+                {t("readyToBuildDescription")}
               </p>
             </div>
           </motion.div>

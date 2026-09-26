@@ -9,12 +9,14 @@ import {
   CheckCircle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { CertificationsStatsSkeleton, CertificationsGridSkeleton } from "./loading";
 import { Certification } from "@/interfaces/Certification";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export default function CertificationsPage() {
+  const t = useTranslations("Certifications");
   const [certifications, setCertifications] = useState<Certification[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -101,7 +103,7 @@ export default function CertificationsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
           >
-            Certifications
+            {t("title")}
           </motion.h1>
           <motion.p
             className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
@@ -109,8 +111,7 @@ export default function CertificationsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
           >
-            Professional certifications and achievements that validate my
-            expertise and continuous learning journey.
+            {t("subtitle")}
           </motion.p>
         </motion.div>
 

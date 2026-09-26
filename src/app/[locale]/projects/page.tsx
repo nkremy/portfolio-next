@@ -6,9 +6,11 @@ import { Pagination, PaginationContent, PaginationItem, PaginationLink, Paginati
 import { Project } from "@/interfaces/Project";
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
+import { useTranslations } from "next-intl";
 import { ProjectsGridSkeleton } from "./loading";
 
 export default function ProjectsPage() {
+  const t = useTranslations("Projects");
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'Web' | 'Desktop App' | 'AI'>('all');
@@ -23,10 +25,10 @@ export default function ProjectsPage() {
   }, []);
 
   const categories = [
-    { id: 'all', label: 'All Projects' },
-    { id: 'Web', label: 'Web Apps' },
-    { id: 'Desktop App', label: 'Desktop Apps' },
-    { id: 'AI', label: 'AI/ML' }
+    { id: 'all', label: t('allProjects') },
+    { id: 'Web', label: t('webApps') },
+    { id: 'Desktop App', label: t('desktopApps') },
+    { id: 'AI', label: t('aiMl') }
   ];
 
   useEffect(() => {
@@ -133,15 +135,15 @@ export default function ProjectsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           >
-            My Projects
+            {t("title")}
           </motion.h1>
-          <motion.p 
+          <motion.p
             className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
           >
-            Explore my latest work and creative solutions across web development, mobile apps, and AI/ML projects.
+            {t("subtitle")}
           </motion.p>
         </motion.div>
 
@@ -185,7 +187,7 @@ export default function ProjectsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 1 }}
           >
-            {selectedCategory === 'all' ? 'All Projects' : `${categories.find(c => c.id === selectedCategory)?.label}`}
+            {selectedCategory === 'all' ? t('allProjects') : `${categories.find(c => c.id === selectedCategory)?.label}`}
           </motion.h2>
           {loading ? (
             <ProjectsGridSkeleton />
@@ -220,7 +222,7 @@ export default function ProjectsPage() {
                       variant="outline"
                       className="bg-gradient-to-r from-purple-600 to-blue-600 text-white border-0 hover:from-purple-700 hover:to-blue-700"
                     >
-                      View All Projects
+                      {t("viewAll")}
                     </Button>
                   ) : (
                     <Button
@@ -232,7 +234,7 @@ export default function ProjectsPage() {
                       variant="outline"
                       className="bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700"
                     >
-                      Back to Pagination
+                      {t("backToPagination")}
                     </Button>
                   )}
                 </div>
@@ -291,16 +293,16 @@ export default function ProjectsPage() {
             transition={{ duration: 0.8, ease: "easeOut", delay: 1 }}
           >
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              No projects found
+              {t("noProjectsFound")}
             </h3>
             <p className="text-gray-600 dark:text-gray-300 mb-8">
-              No projects match the selected category.
+              {t("noProjectsMatch")}
             </p>
             <Button
               onClick={() => setSelectedCategory('all')}
               className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
             >
-              View All Projects
+              {t("viewAll")}
             </Button>
           </motion.div>
         )}

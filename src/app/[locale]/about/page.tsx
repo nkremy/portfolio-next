@@ -5,13 +5,14 @@ import { motion } from "framer-motion";
 import { Award, ExternalLink, Layers, Contact } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { technologies } from "@/constants/Technologies";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { Experience } from "@/components/experience";
 import { Education } from "@/components/education";
 import { useProfile } from "@/hooks/useProfile";
 import { ProjectsSection } from "@/components/projects-section";
 import Image from "next/image";
 import { Testimonials } from "@/components/testimonials";
+import { useTranslations } from "next-intl";
 
 interface CertificationData {
   id: string;
@@ -25,6 +26,7 @@ interface CertificationData {
 }
 
 export default function AboutPage() {
+  const t = useTranslations("About");
   const { profile: social } = useProfile();
   const [certifications, setCertifications] = useState<CertificationData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -107,7 +109,7 @@ export default function AboutPage() {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
           >
             <h2 className="text-2xl font-bold bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent uppercase tracking-wider">
-              Biography
+              {t("biography")}
             </h2>
             <div className="space-y-4 text-gray-700 dark:text-gray-300 text-lg leading-relaxed text-justify">
               <p>

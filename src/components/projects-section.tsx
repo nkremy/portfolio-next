@@ -6,9 +6,11 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Project } from "@/interfaces/Project";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 export function ProjectsSection() {
+  const t = useTranslations("Projects");
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -66,7 +68,7 @@ export function ProjectsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           >
-            Featured Projects
+            {t("featuredProjects")}
           </motion.h2>
           <motion.p
             className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
@@ -75,7 +77,7 @@ export function ProjectsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
           >
-            Explore some of my recent work that showcases my skills in full-stack development, UI/UX design, and innovative problem-solving.
+            {t("featuredProjectsSubtitle")}
           </motion.p>
         </motion.div>
 
@@ -127,7 +129,7 @@ export function ProjectsSection() {
                 asChild
               >
                 <Link href="/projects">
-                  View More Projects
+                  {t("viewMoreProjects")}
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Link>
               </Button>

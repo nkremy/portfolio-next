@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import Link from "next/link"
+import { Link } from "@/i18n/navigation";
 import Image from "next/image"
 import { format } from "date-fns"
 import { ArrowRight, CalendarDays, FileText } from "lucide-react"
@@ -9,8 +9,10 @@ import { Blog } from "@/interfaces/Blog"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { useTranslations } from "next-intl"
 
 export default function BlogsPage() {
+  const t = useTranslations("Blogs")
   const [blogs, setBlogs] = useState<Blog[]>([])
   const [isLoading, setIsLoading] = useState(true)
 
@@ -42,10 +44,10 @@ export default function BlogsPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center mb-14">
           <h1 className="text-5xl md:text-6xl font-bold mb-5 bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 bg-clip-text text-transparent">
-            Blogs
+            {t("title")}
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Notes from shipped work, architecture decisions, and case studies from real projects.
+            {t("subtitle")}
           </p>
         </div>
 

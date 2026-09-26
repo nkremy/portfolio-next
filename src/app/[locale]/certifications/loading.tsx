@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Award, ExternalLink } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 // Export skeleton components for use in other files
 export function CertificationsStatsSkeleton() {

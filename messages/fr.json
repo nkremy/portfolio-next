@@ -1,0 +1,88 @@
+{
+  "Nav": {
+    "about": "À propos",
+    "projects": "Projets",
+    "blogs": "Blog",
+    "certifications": "Certifications",
+    "contact": "Contact",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "closeMobileMenu": "Fermer le menu mobile"
+  },
+  "Hero": {
+    "resume": "CV",
+    "contact": "Contact",
+    "tagline": "Transformer une vision en réalité, avec du code et du design.",
+    "subtitle": "Développeur full-stack passionné, je transforme des idées en applications web innovantes. Découvrez mes derniers projets et articles, illustrant mon expertise en React.js et développement web."
+  },
+  "About": {
+    "whatIDo": "Ce que je fais",
+    "readyToBuild": "Prêt à construire quelque chose d'exceptionnel ?",
+    "readyToBuildDescription": "Discutons de votre projet et donnons vie à votre vision.",
+    "noSkills": "Aucune compétence renseignée pour le moment. Ajoute-les depuis ton",
+    "dashboard": "tableau de bord",
+    "biography": "Biographie"
+  },
+  "Footer": {
+    "quickLinks": "Liens rapides",
+    "getInTouch": "Me contacter",
+    "availableForHire": "Disponible pour une mission",
+    "rights": "Tous droits réservés."
+  },
+  "Contact": {
+    "title": "Entrons en contact",
+    "subtitle": "Prêt à démarrer votre prochain projet ? Discutons de comment je peux vous aider à concrétiser vos idées.",
+    "letsConnect": "Connectons-nous",
+    "letsConnectDescription": "Je suis toujours ravi de travailler sur de nouveaux projets et de collaborer avec des personnes passionnantes. Que vous ayez un projet précis en tête ou simplement envie de discuter technologie, je serais heureux d'échanger avec vous.",
+    "email": "Email",
+    "phone": "Téléphone",
+    "location": "Localisation",
+    "followMe": "Me suivre",
+    "formName": "Nom / Nom de l'entreprise",
+    "formEmail": "Email",
+    "formSubject": "Sujet",
+    "formMessage": "Message",
+    "namePlaceholder": "Votre nom",
+    "emailPlaceholder": "votre@email.com",
+    "subjectPlaceholder": "Sujet de votre message",
+    "messagePlaceholder": "Parlez-moi de votre projet...",
+    "send": "Envoyer le message",
+    "sending": "Envoi en cours...",
+    "successTitle": "Merci ! Votre message a été envoyé avec succès.",
+    "networkError": "Erreur réseau. Vérifiez votre connexion et réessayez.",
+    "sendMessage": "Envoyer un message",
+    "readyToStart": "Prêt à démarrer votre projet ?",
+    "readyToStartDescription": "Je suis toujours ravi de travailler sur de nouveaux projets et d'aider à concrétiser des idées innovantes. Discutons de comment nous pouvons collaborer pour atteindre vos objectifs.",
+    "viewMyWork": "Voir mes projets",
+    "learnMoreAboutMe": "En savoir plus sur moi"
+  },
+  "Projects": {
+    "title": "Mes projets",
+    "subtitle": "Un aperçu de mon travail récent et de mes expériences.",
+    "viewAll": "Voir tous les projets",
+    "viewProject": "Voir le projet",
+    "noProjects": "Aucun projet pour le moment.",
+    "allProjects": "Tous les projets",
+    "webApps": "Applications web",
+    "desktopApps": "Applications de bureau",
+    "aiMl": "IA / ML",
+    "backToPagination": "Retour à la pagination",
+    "noProjectsFound": "Aucun projet trouvé",
+    "noProjectsMatch": "Aucun projet ne correspond à la catégorie sélectionnée.",
+    "featuredProjects": "Projets phares",
+    "featuredProjectsSubtitle": "Découvrez quelques-uns de mes travaux récents illustrant mes compétences en développement full-stack, design UI/UX et résolution de problèmes.",
+    "viewMoreProjects": "Voir plus de projets"
+  },
+  "Certifications": {
+    "title": "Certifications",
+    "subtitle": "Certifications professionnelles et réalisations attestant de mon expertise et de mon apprentissage continu."
+  },
+  "Blogs": {
+    "title": "Blog",
+    "subtitle": "Notes sur des projets livrés, des choix d’architecture et des études de cas issues de projets réels.",
+    "readMore": "Lire la suite"
+  },
+  "Common": {
+    "loading": "Chargement..."
+  }
+}

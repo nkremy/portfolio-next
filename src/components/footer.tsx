@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { FaGithub, FaLinkedin, FaFacebook } from "react-icons/fa";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { motion } from "framer-motion";
@@ -9,6 +10,8 @@ import { useProfile } from "@/hooks/useProfile";
 
 export function Footer() {
   const { profile: social } = useProfile();
+  const t = useTranslations("Footer");
+  const tNav = useTranslations("Nav");
   const currentYear = new Date().getFullYear();
 
   const containerVariants = {
@@ -146,7 +149,7 @@ export function Footer() {
             {/* Quick Links */}
             <motion.div variants={itemVariants}>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
-                Quick Links
+                {t("quickLinks")}
               </h3>
               <ul className="space-y-3">
                 <li>
@@ -154,15 +157,7 @@ export function Footer() {
                     href="/about"
                     className="text-gray-600 dark:text-white/80 hover:text-purple-600 dark:hover:text-white transition-colors duration-300"
                   >
-                    About
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/experience"
-                    className="text-gray-600 dark:text-white/80 hover:text-purple-600 dark:hover:text-white transition-colors duration-300"
-                  >
-                    Experience
+                    {tNav("about")}
                   </Link>
                 </li>
                 <li>
@@ -170,7 +165,7 @@ export function Footer() {
                     href="/projects"
                     className="text-gray-600 dark:text-white/80 hover:text-purple-600 dark:hover:text-white transition-colors duration-300"
                   >
-                    Projects
+                    {tNav("projects")}
                   </Link>
                 </li>
                 <li>
@@ -178,7 +173,7 @@ export function Footer() {
                     href="/certifications"
                     className="text-gray-600 dark:text-white/80 hover:text-purple-600 dark:hover:text-white transition-colors duration-300"
                   >
-                    Certifications
+                    {tNav("certifications")}
                   </Link>
                 </li>
                 <li>
@@ -186,7 +181,7 @@ export function Footer() {
                     href="/contact"
                     className="text-gray-600 dark:text-white/80 hover:text-purple-600 dark:hover:text-white transition-colors duration-300"
                   >
-                    Contact
+                    {tNav("contact")}
                   </Link>
                 </li>
               </ul>
@@ -195,7 +190,7 @@ export function Footer() {
             {/* Contact Info */}
             <motion.div variants={itemVariants}>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
-                Get In Touch
+                {t("getInTouch")}
               </h3>
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
@@ -219,7 +214,7 @@ export function Footer() {
                   <Link href="/contact" className="flex gap-3">
                     <Phone className="w-5 h-5 text-purple-600 dark:text-white" />
                     <span className="text-gray-600 dark:text-white/80 hover:text-purple-600 dark:hover:text-white transition-colors duration-300">
-                      Available for hire
+                      {t("availableForHire")}
                     </span>
                   </Link>
                 </div>
@@ -239,7 +234,7 @@ export function Footer() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <p className="text-gray-500 dark:text-gray-400 text-sm">
-                © {currentYear} {social.name}. All rights reserved.
+                © {currentYear} {social.name}. {t("rights")}
               </p>
             </div>
           </div>

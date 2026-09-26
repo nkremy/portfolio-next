@@ -11,6 +11,10 @@ test.describe('Public navigation', () => {
   });
 
   test('navigating home -> about -> projects -> certifications -> blogs -> contact -> home has no runtime errors', async ({ page }) => {
+    // Visits 6 distinct routes that may each need a cold Turbopack compile
+    // on first hit in dev mode, so give this one more headroom than the
+    // default per-test timeout.
+    test.setTimeout(60_000);
     const errors = trackPageErrors(page);
 
     await page.goto('/');
@@ -46,7 +50,7 @@ test.describe('Public navigation', () => {
   test('mobile menu opens and closes without errors', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     const errors = trackPageErrors(page);
-    await page.goto('/');
+    await page.goto('/en');
 
     const openButton = page.getByRole('button', { name: 'Open menu' });
     await openButton.click();

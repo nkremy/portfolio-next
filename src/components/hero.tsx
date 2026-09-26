@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
@@ -10,6 +11,7 @@ import Image from "next/image";
 
 export function Hero() {
   const { profile } = useProfile();
+  const t = useTranslations("Hero");
 
   return (
     <section id="home" className="min-h-screen flex items-center px-4 sm:px-6 lg:px-8 pb-10 animate-fade-in">
@@ -56,7 +58,7 @@ export function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
               >
-                Turning Vision Into Reality With Code And Design.
+                {t("tagline")}
               </motion.h1>
               
               <motion.p 
@@ -65,7 +67,7 @@ export function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
               >
-                As a skilled full-stack developer, I am dedicated to turning ideas into innovative web applications. Explore my latest projects and articles, showcasing my expertise in React.js and web development.
+                {t("subtitle")}
               </motion.p>
               
               <motion.div 
@@ -81,7 +83,7 @@ export function Hero() {
                     asChild
                   >
                     <Link href={profile.resume || "#"} target="_blank" rel="noopener noreferrer">
-                      Resume
+                      {t("resume")}
                       <ArrowUpRight className="ml-2 h-5 w-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
                     </Link>
                   </Button>
@@ -95,7 +97,7 @@ export function Hero() {
                     asChild
                   >
                     <Link href="/contact">
-                      Contact
+                      {t("contact")}
                     </Link>
                   </Button>
                 </motion.div>
