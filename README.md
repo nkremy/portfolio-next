@@ -8,7 +8,7 @@ This repository is now evolving into something bigger: a platform where anyone c
 
 ## Live portfolio
 
-[View the published portfolio](https://furqanahmad.me)
+[View the published portfolio](https://dashboard-controlled-portfolio.vercel.app)
 
 ## What works today
 
@@ -86,7 +86,7 @@ Contributions of all sizes are welcome. Useful ways to contribute include:
 - Refactoring the data model for secure multi-user ownership
 - Building the template registry and rendering system
 - Improving authentication, validation, accessibility, tests, and documentation
-- Reporting bugs or proposing product ideas through [GitHub Issues](https://github.com/furqanahmad03/dashboard-controlled-portfolio/issues)
+- Reporting bugs or proposing product ideas through [GitHub Issues](https://github.com/nkremy/portfolio-next/issues)
 
 For a substantial feature, please open an issue first. Describe the problem, proposed behavior, and any data-model or UI impact. This helps contributors align before investing significant time.
 
@@ -135,7 +135,7 @@ In the pull request, explain what changed, why it changed, how it was tested, an
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/furqanahmad03/dashboard-controlled-portfolio.git
+   git clone https://github.com/nkremy/portfolio-next.git
    cd dashboard-controlled-portfolio
    ```
 
@@ -218,9 +218,9 @@ The existing schema was created for one managed portfolio. Some portfolio record
 
 ## Support
 
-- Email: [hfurqan.se@gmail.com](mailto:hfurqan.se@gmail.com)
-- Bugs and ideas: [GitHub Issues](https://github.com/furqanahmad03/dashboard-controlled-portfolio/issues)
-- Published portfolio: [furqanahmad.me](https://furqanahmad.me)
+- Email: [remyjunior386@gmail.com](mailto:remyjunior386@gmail.com)
+- Bugs and ideas: [GitHub Issues](https://github.com/nkremy/portfolio-next/issues)
+- Published portfolio: [dashboard-controlled-portfolio.vercel.app](https://dashboard-controlled-portfolio.vercel.app)
 
 ## License
 

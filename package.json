@@ -1,7 +1,12 @@
 {
-  "name": "nextjs-app",
+  "name": "portfolio-next",
   "version": "0.1.0",
   "private": true,
+  "author": "Remy Junior Nguela Kengne",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nkremy/portfolio-next.git"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
