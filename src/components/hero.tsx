@@ -82,10 +82,10 @@ export function Hero() {
                     className="bg-gradient-to-r from-gray-900 via-purple-800 to-blue-600 dark:from-white dark:via-purple-200 dark:to-blue-300 text-white dark:text-black hover:from-gray-800 hover:via-purple-700 hover:to-blue-500 dark:hover:from-gray-100 dark:hover:via-purple-100 dark:hover:to-blue-200 transition-all duration-300 group text-lg px-8 py-6 shadow-lg hover:shadow-xl"
                     asChild
                   >
-                    <Link href={profile.resume || "#"} target="_blank" rel="noopener noreferrer">
+                    <a href={profile.resume || "#"} target="_blank" rel="noopener noreferrer">
                       {t("resume")}
                       <ArrowUpRight className="ml-2 h-5 w-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
-                    </Link>
+                    </a>
                   </Button>
                 </motion.div>
                 

@@ -430,14 +430,14 @@ export default function AboutPage() {
               transition={{ duration: 0.2 }}
             >
               <Button variant="outline" size="lg" asChild>
-                <Link
+                <a
                   href={social.resume || "#"}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <ExternalLink className="w-5 h-5 mr-2" />
                   Download Resume
-                </Link>
+                </a>
               </Button>
             </motion.div>
           </motion.div>
